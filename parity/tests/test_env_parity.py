@@ -12,3 +12,7 @@ class TestEnvParity(object):
             './parity/tests/env_files/.test_2.env',
             './parity/tests/env_files/.test_1.env'
         ] == file_paths
+
+    def test_it_returns_empty_list_if_no_env_files(self):
+        file_paths = discover_env_files('./parity/tests')
+        assert [] == file_paths
