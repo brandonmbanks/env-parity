@@ -3,10 +3,7 @@ import os
 
 def read_keys(file_path):
     f = open(file_path, 'r', encoding='utf-8')
-    keys = []
-    for line in list(f):
-        keys.append(line.split('=')[0])
-    return keys
+    return list(map(lambda x: x.split('=')[0], list(f)))
 
 
 def main():
