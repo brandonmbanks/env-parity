@@ -1,19 +1,24 @@
 import os
+from typing import List
 
 
-def read_keys(file_path):
+def discover_env_files(dir_path: str) -> List[str]:
+    env_file_paths = []
+    for file in os.scandir(dir_path):
+        if file.is_file():
+            if '.env' in file.path:
+                env_file_paths.append(file.path)
+    return env_file_paths
+
+
+def read_keys(file_path: str) -> List[str]:
     f = open(file_path, 'r', encoding='utf-8')
     return list(map(lambda x: x.split('=')[0], list(f)))
 
 
 def main():
-    path = './'
-    env_file_paths = []
-    for file in os.scandir(path):
-        if file.is_file():
-            if '.env' in file.path:
-                env_file_paths.append(file.path)
-
+    dir_path = './'
+    env_file_paths = discover_env_files(dir_path)
     all_keys = []
     for path in env_file_paths:
         keys = read_keys(path)
