@@ -1,6 +1,14 @@
 import os
 
 
+def read_keys(file_path):
+    f = open(file_path, 'r', encoding='utf-8')
+    keys = []
+    for line in list(f):
+        keys.append(line.split('=')[0])
+    return keys
+
+
 def main():
     path = './'
     env_file_paths = []
@@ -11,10 +19,7 @@ def main():
 
     all_keys = []
     for path in env_file_paths:
-        f = open(path, 'r', encoding='utf-8')
-        keys = []
-        for line in list(f):
-            keys.append(line.split('=')[0])
+        keys = read_keys(path)
         if len(all_keys) == 0:
             all_keys = keys
         diff = list(set(keys).symmetric_difference(set(all_keys)))
