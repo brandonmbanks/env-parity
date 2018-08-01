@@ -1,0 +1,9 @@
+language: python
+python:
+  - "3.6.4"
+install:
+  - pip3 install pytest
+script:
+  - pytest
+notifications:
+  email: false
