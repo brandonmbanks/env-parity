@@ -10,10 +10,9 @@ class TestEnvParity(object):
 
     def test_it_discovers_env_files(self):
         file_paths = discover_env_files('./parity/tests/env_files')
-        assert [
-            './parity/tests/env_files/.test_2.env',
-            './parity/tests/env_files/.test_1.env'
-        ] == file_paths
+        assert './parity/tests/env_files/.test_1.env' in file_paths
+        assert './parity/tests/env_files/.test_2.env' in file_paths
+        assert 2 == len(file_paths)
 
     def test_it_returns_empty_list_if_no_env_files(self):
         file_paths = discover_env_files('./parity/tests')
